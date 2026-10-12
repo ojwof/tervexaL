@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
 import {
-  ArrowRight,
-  ChevronRight,
   Package,
   Eye,
   Search,
   CheckCircle2,
-  Clock,
-  AlertTriangle,
   AlertCircle,
   Tag,
   Truck,
-  TrendingUp,
-  MapPin,
-  ExternalLink,
-  Copy,
-  Check,
   Edit3,
   SlidersHorizontal
 } from 'lucide-react';
@@ -62,7 +53,6 @@ export const OperationsCenter: React.FC<OperationsCenterProps> = ({
   const [editShipment, setEditShipment] = useState<Shipment | null>(null);
   const [savedToast, setSavedToast] = useState<string | null>(null);
   const [tableSearch, setTableSearch] = useState<string>('');
-  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   // Metrics calculation
   const totalShipmentsCount = shipments.length;
@@ -81,11 +71,6 @@ export const OperationsCenter: React.FC<OperationsCenterProps> = ({
   const totalPieces = shipments.reduce((acc, s) => {
     const piecesCount = Array.isArray(s.pieces) && s.pieces.length > 0 ? s.pieces.length : (s.totalPieces || 1);
     return acc + piecesCount;
-  }, 0);
-
-  const totalWeightLbs = shipments.reduce((acc, s) => {
-    const w = parseFloat(String(s.totalWeightLbs || 0));
-    return acc + (isNaN(w) ? 0 : w);
   }, 0);
 
   // Pending quotes awaiting tariff certification
@@ -141,13 +126,6 @@ export const OperationsCenter: React.FC<OperationsCenterProps> = ({
       .replace('November', 'Nov')
       .replace('December', 'Dec');
     return { date: dateStr, time: timeStr };
-  };
-
-  const handleCopyId = (id: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-    navigator.clipboard.writeText(id);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
   };
 
   return (

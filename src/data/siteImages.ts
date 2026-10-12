@@ -28,7 +28,6 @@ export const SITE_IMAGES = {
   'track-result-vehicle': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
   'about-operations': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
   'about-story': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
-  'contact-team': { width: 340, height: 340, widths: [340, 640, 1024, 1400] },
   'about-team': { width: 340, height: 340, widths: [340, 640] },
 } satisfies Record<string, SiteImageInfo>;
 

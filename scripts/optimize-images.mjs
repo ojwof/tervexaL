@@ -195,7 +195,6 @@ const PHOTOS = [
   { name: 'track-result-vehicle', src: 'free-stock/track-result-vehicle.jpg', kind: 'card' },
   { name: 'about-operations', src: 'free-pexels/about-operations.jpg', kind: 'card' },
   { name: 'about-story', src: 'free-stock/about-story.jpg', kind: 'card' },
-  { name: 'contact-team', src: 'free-stock/contact-team.jpg', kind: 'card' },
   // Shown as a 72 px thumbnail: crop tight on the face.
   { name: 'about-team', src: 'free-pexels/about-team.jpg', kind: 'card', crop: { left: 950, top: 80, width: 900, height: 900 } },
 ];

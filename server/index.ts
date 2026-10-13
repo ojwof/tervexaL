@@ -255,7 +255,8 @@ app.get(ADMIN_ROUTE, (req: Request, res: Response, next: NextFunction) => {
 app.use(express.static(distDir, {
   setHeaders: (res, filePath) => {
     const rel = path.relative(distDir, filePath).split(path.sep).join('/');
-    if (rel.startsWith('assets/')) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    // assets/ names carry a content hash and fonts/ names a font version, so neither ever changes.
+    if (rel.startsWith('assets/') || rel.endsWith('.woff2')) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     else if (rel.endsWith('.html')) res.setHeader('Cache-Control', 'no-cache');
     else res.setHeader('Cache-Control', 'public, max-age=3600');
   },

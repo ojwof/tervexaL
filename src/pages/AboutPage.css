@@ -278,7 +278,7 @@
   border: 1px solid var(--ngf-slate-300);
 }
 
-.pillar-item h4 {
+.pillar-item h3 {
   font-size: 0.9375rem;
   font-weight: 800;
   color: var(--ngf-ink-900);

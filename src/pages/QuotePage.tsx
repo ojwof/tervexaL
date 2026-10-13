@@ -534,7 +534,7 @@ export const QuotePage: React.FC<QuotePageProps> = ({ onNavigate, initialService
             {/* Side card (CONTENT §7.1) */}
             <div className="quote-sidebar-col">
               <div className="quote-policy-card">
-                <h3>Straight answers, no surprises.</h3>
+                <h2>Straight answers, no surprises.</h2>
                 <p>
                   Your quote includes the service, estimated transit time and every known charge, so the price you accept is the price you pay (duties and taxes as applicable).
                 </p>

@@ -25,6 +25,14 @@
   overflow: hidden;
 }
 
+/* Phones get the same photo at 828px wide (Unsplash resizes it), about a quarter of the bytes.
+   vite.config.ts (PAGE_HEROES) preloads both URLs: keep them in step. */
+@media (max-width: 767px) {
+  .ngf-quote-hero {
+    background-image: url('https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=828&auto=format&fit=crop&q=85');
+  }
+}
+
 .quote-hero-bg-overlay {
   position: absolute;
   inset: 0;
@@ -249,7 +257,7 @@
   margin-bottom: 0.375rem;
 }
 
-.quote-policy-card h3 {
+.quote-policy-card h2 {
   font-size: 1.375rem;
   font-weight: 800;
   color: var(--ngf-ink-900);

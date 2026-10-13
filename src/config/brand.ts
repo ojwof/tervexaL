@@ -17,6 +17,12 @@ export const SITE_URL = `https://${DOMAIN}`;
 export const LOGO = '/brand/logo.png';
 export const LOGO_WHITE = '/brand/logo-white.png';
 export const LOGO_ALT = COMPANY;
+// Small WebP copies (435x112) for on-screen logos: header, footer, admin sidebar. Documents and
+// PDFs keep the full-size PNGs above.
+export const LOGO_WEB = '/brand/logo.webp';
+export const LOGO_WHITE_WEB = '/brand/logo-white.webp';
+export const LOGO_WEB_WIDTH = 435;
+export const LOGO_WEB_HEIGHT = 112;
 
 // The admin console lives at this path on the main domain, served by the same app and API
 // (plus #/admin on localhost for development). Never listed in robots.txt or the sitemap.

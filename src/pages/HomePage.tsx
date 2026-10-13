@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Suspense, lazy, useState } from 'react';
 import {
   Package,
   Truck,
@@ -29,7 +29,6 @@ import {
   Ship,
   ScanBarcode
 } from 'lucide-react';
-import { Barcode } from '../components/Barcode';
 import { HomeNetworkMap } from '../components/HomeNetworkMap';
 import { ResponsiveImage } from '../components/ResponsiveImage';
 import { SiteImageName } from '../data/siteImages';
@@ -39,6 +38,16 @@ import { useCompanyContact } from '../utils/useCompanyContact';
 import { COMPANY, COMPANY_SHORT, TRACKING_ID_EXAMPLE } from '../config/brand';
 import { api } from '../services/api';
 import './HomePage.css';
+
+// The sample label sits far down the page, so its barcode library (jsbarcode) loads after the
+// first paint instead of with the main bundle. Other pages and the admin import Barcode directly.
+const Barcode = lazy(() => import('../components/Barcode').then((m) => ({ default: m.Barcode })));
+// Same markup Barcode renders before its effect draws the bars.
+const barcodePlaceholder = (
+  <div className="ngf-barcode-container " style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center' }}>
+    <svg />
+  </div>
+);
 
 interface HomePageProps {
   onTrack: (trackingNumber: string) => void;
@@ -754,7 +763,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
               <div key={tile.title} className="trust-pillar-card">
                 <div className="trust-pillar-icon">{tile.icon}</div>
                 <div>
-                  <h4>{tile.title}</h4>
+                  <h3>{tile.title}</h3>
                   <p>{tile.body}</p>
                 </div>
               </div>
@@ -821,7 +830,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onTrack, onNavigate }) => {
 
               <div className="bc-canvas-wrap-thermal">
                 <div className="laser-sweep-line" />
-                <Barcode value={TRACKING_ID_EXAMPLE} width={2.2} height={68} />
+                <Suspense fallback={barcodePlaceholder}>
+                  <Barcode value={TRACKING_ID_EXAMPLE} width={2.2} height={68} />
+                </Suspense>
               </div>
 
               <div className="thermal-footer font-mono">

@@ -173,7 +173,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, initialGat
             ) : (
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-header-row">
-                  <h3>Send us a message</h3>
+                  <h2>Send us a message</h2>
                 </div>
 
                 {formError && (

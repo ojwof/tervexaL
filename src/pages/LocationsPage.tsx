@@ -59,7 +59,7 @@ export const LocationsPage: React.FC<LocationsPageProps> = ({ onNavigate }) => {
         <div className="locations-map-feature animate-fade-in">
           <div className="map-card-header">
             <div className="map-badge-pill font-mono">GLOBAL NETWORK</div>
-            <h3>Gateways & scheduled trade lanes</h3>
+            <h2>Gateways & scheduled trade lanes</h2>
           </div>
           <FacilityNetworkMap onContactGateway={contactGateway} />
         </div>

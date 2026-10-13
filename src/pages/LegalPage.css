@@ -25,6 +25,14 @@
   overflow: hidden;
 }
 
+/* Phones get the same photo at 828px wide (Unsplash resizes it), about a quarter of the bytes.
+   vite.config.ts (PAGE_HEROES) preloads both URLs: keep them in step. */
+@media (max-width: 767px) {
+  .ngf-legal-hero {
+    background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=828&auto=format&fit=crop&q=85');
+  }
+}
+
 .legal-hero-bg-overlay {
   position: absolute;
   inset: 0;

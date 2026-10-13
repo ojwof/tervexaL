@@ -137,6 +137,8 @@ async function buildIcons(squareMark) {
 }
 
 const LOGO_PNG = { palette: true, quality: 90, effort: 10, compressionLevel: 9 };
+const LOGO_WEBP = { quality: 85, alphaQuality: 100, effort: 6 };
+const LOGO_WEB_HEIGHT = 112;
 const OG_BACKGROUND = '#181818'; // --ngf-ink-950, the dark hero/footer surface
 const OG_LOGO_WIDTH = 900;
 
@@ -147,6 +149,11 @@ async function buildBrand() {
 
   const white = await toWhiteVersion(trimmed);
   await sharp(white).png(LOGO_PNG).toFile(path.join(BRAND_OUT, 'logo-white.png'));
+
+  // Web copies for the header, footer and admin sidebar (shown at most 56px tall, so 2x).
+  // The full-size PNGs above stay for documents and PDFs.
+  await sharp(trimmed).resize({ height: LOGO_WEB_HEIGHT }).webp(LOGO_WEBP).toFile(path.join(BRAND_OUT, 'logo.webp'));
+  await sharp(white).resize({ height: LOGO_WEB_HEIGHT }).webp(LOGO_WEBP).toFile(path.join(BRAND_OUT, 'logo-white.webp'));
 
   const squareMark = await buildSquareMark(transparent);
   await sharp(squareMark).png(LOGO_PNG).toFile(path.join(BRAND_OUT, 'mark.png'));

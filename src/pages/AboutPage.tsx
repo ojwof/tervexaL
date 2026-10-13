@@ -170,7 +170,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   <div key={item.title} className="pillar-item">
                     <div className={`pillar-icon-box ${item.tone}`}>{item.icon}</div>
                     <div>
-                      <h4>{item.title}</h4>
+                      <h3>{item.title}</h3>
                       <p>{item.body}</p>
                     </div>
                   </div>

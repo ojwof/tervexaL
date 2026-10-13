@@ -643,7 +643,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                   <div className="sec-header">
                     <div className="sec-icon"><User size={20} /></div>
                     <div>
-                      <h3>1. {STEP_TITLES[0]}</h3>
+                      <h2>1. {STEP_TITLES[0]}</h2>
                     </div>
                   </div>
 
@@ -769,7 +769,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                   <div className="sec-header">
                     <div className="sec-icon"><MapPin size={20} /></div>
                     <div>
-                      <h3>2. {STEP_TITLES[1]}</h3>
+                      <h2>2. {STEP_TITLES[1]}</h2>
                     </div>
                   </div>
 
@@ -868,7 +868,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                     <div className="sec-icon"><Layers size={20} /></div>
                     <div className="sec-title-wrap">
                       <div>
-                        <h3>3. {STEP_TITLES[2]}</h3>
+                        <h2>3. {STEP_TITLES[2]}</h2>
                         <UnitToggle className="ship-unit-toggle" />
                       </div>
                       <button
@@ -995,7 +995,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
                   <div className="sec-header">
                     <div className="sec-icon"><Truck size={20} /></div>
                     <div>
-                      <h3>4. {STEP_TITLES[3]}</h3>
+                      <h2>4. {STEP_TITLES[3]}</h2>
                     </div>
                   </div>
 
@@ -1203,7 +1203,7 @@ export const ShipPage: React.FC<ShipPageProps> = ({ onTrack, onNavigate }) => {
             {BOOKING_STAGES.map((stage, i) => (
               <div key={stage.title} className="p-step-card">
                 <div className="step-badge">{String(i + 1).padStart(2, '0')}</div>
-                <h4>{stage.title}</h4>
+                <h3>{stage.title}</h3>
                 <p>{stage.body}</p>
               </div>
             ))}

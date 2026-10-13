@@ -102,7 +102,12 @@ Keep the current, well-performing trio (already loaded in `index.html`):
 
 - Headings: tight tracking (-0.02em), line-height 1.1.
 - Body: 16px min (17–18px on marketing pages), line-height 1.6.
-- Add `font-display: swap` (already present via Google Fonts `display=swap`). Consider self-hosting for speed.
+- Fonts are self-hosted in `Public/fonts/` (the same Google Fonts files, SIL Open Font License, see
+  `OFL-*.txt`). The `@font-face` rules (one per family and script subset, `font-display: swap`) sit inline
+  in `index.html`, which also preloads the Latin Inter and Plus Jakarta Sans files. A new weight or family
+  means adding its files and rules there.
+- On-screen logos (header, footer, admin sidebar) use `logo.webp` / `logo-white.webp` (435×112);
+  documents and PDFs keep the full-size PNGs.
 
 ## 6. Logo usage
 

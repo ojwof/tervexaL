@@ -792,6 +792,15 @@
   color: var(--ngf-white);
 }
 
+/* Small red text on Ink uses Accent 400 (BRAND_GUIDE colour table: 500 on Ink is large text only).
+   !important because admin/pages/AllShipmentsView.css, which is in the main stylesheet too,
+   sets .text-accent with !important. */
+.corp-services-section .section-eyebrow.text-accent,
+.corp-hubs-map-section .section-eyebrow.text-accent,
+.corp-hubs-map-section .btn-why-readmore {
+  color: var(--ngf-accent-400) !important;
+}
+
 .section-center-header.light h2 {
   color: var(--ngf-white);
 }
@@ -1334,7 +1343,7 @@
   flex-shrink: 0;
 }
 
-.trust-pillar-card h4 {
+.trust-pillar-card h3 {
   font-size: 0.9375rem;
   font-weight: 700;
   color: var(--ngf-ink-900);
@@ -1397,7 +1406,7 @@
 
 .b-spec small {
   font-size: 0.75rem;
-  color: var(--ngf-slate-500);
+  color: var(--ngf-slate-600);
   font-weight: 600;
 }
 
@@ -2026,3 +2035,4 @@
     grid-template-columns: 1fr;
   }
 }
+

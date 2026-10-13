@@ -1,24 +1,13 @@
+// First, so the main stylesheet keeps its tested cascade order (see the file).
+import './styles/cssOrder';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
-import { TrackPage } from './pages/TrackPage';
-import { TrackResultPage } from './pages/TrackResultPage';
-import { PublicQuoteResultPage } from './pages/PublicQuoteResultPage';
-import { ServicesPage } from './pages/ServicesPage';
-import { QuotePage } from './pages/QuotePage';
-import { ShipPage } from './pages/ShipPage';
-import { AboutPage } from './pages/AboutPage';
-import { ContactPage } from './pages/ContactPage';
-import { HelpPage } from './pages/HelpPage';
-import { LegalPage } from './pages/LegalPage';
-import { LocationsPage } from './pages/LocationsPage';
-import { NotFoundPage } from './pages/NotFoundPage';
 // The admin console's code is its own chunk, fetched only when the admin page opens, so public
 // visitors never download it (MOTION_3D_SPEC §2). Its stylesheets stay in the main bundle, in
-// their original place (see admin/styles.ts); that also keeps the `admin-login-shell`
+// their original place (admin/styles.ts, via styles/cssOrder.ts); that also keeps the `admin-login-shell`
 // placeholder styled while the session check and the chunk load.
-import './admin/styles';
 import { TrackingLoadingScreen } from './components/TrackingLoadingScreen';
 import { AdminDataProvider, useAdminData } from './context/AdminDataContext';
 import { Shipment } from './types/shipment';
@@ -26,12 +15,27 @@ import { QuoteRequest } from './types/admin';
 import { api } from './services/api';
 import { simulationEngine } from './services/simulationEngine';
 import { ADMIN_CONSOLE_NAME, COMPANY, COMPANY_SHORT, isAdminPathname } from './config/brand';
-import './styles/global.css';
 
 const loadAdminApp = () => import('./admin/AdminApp');
 const loadAdminLogin = () => import('./admin/AdminLogin');
 const AdminApp = lazy(() => loadAdminApp().then((m) => ({ default: m.AdminApp })));
 const AdminLogin = lazy(() => loadAdminLogin().then((m) => ({ default: m.AdminLogin })));
+
+// Every public page except Home is its own chunk, fetched when first opened, so the first visit
+// only downloads and runs the code for the page being shown. Their CSS stays in the main
+// stylesheet (styles/cssOrder.ts).
+const TrackPage = lazy(() => import('./pages/TrackPage').then((m) => ({ default: m.TrackPage })));
+const TrackResultPage = lazy(() => import('./pages/TrackResultPage').then((m) => ({ default: m.TrackResultPage })));
+const PublicQuoteResultPage = lazy(() => import('./pages/PublicQuoteResultPage').then((m) => ({ default: m.PublicQuoteResultPage })));
+const ServicesPage = lazy(() => import('./pages/ServicesPage').then((m) => ({ default: m.ServicesPage })));
+const QuotePage = lazy(() => import('./pages/QuotePage').then((m) => ({ default: m.QuotePage })));
+const ShipPage = lazy(() => import('./pages/ShipPage').then((m) => ({ default: m.ShipPage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const HelpPage = lazy(() => import('./pages/HelpPage').then((m) => ({ default: m.HelpPage })));
+const LegalPage = lazy(() => import('./pages/LegalPage').then((m) => ({ default: m.LegalPage })));
+const LocationsPage = lazy(() => import('./pages/LocationsPage').then((m) => ({ default: m.LocationsPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
 
 const KNOWN_PAGES = ['home', 'track', 'services', 'quote', 'ship', 'about', 'help', 'contact', 'legal', 'locations', 'admin'];
 
@@ -443,6 +447,9 @@ function MainAppContent() {
         onNavigate={handleNavigate}
       />
 
+      {/* The footer shares the page's Suspense boundary: while a page's code is loading neither
+          is shown, so the footer never renders at the top and then jumps down (layout shift). */}
+      <Suspense fallback={<main className="ngf-main-view" />}>
       <main className="ngf-main-view">
         {isTrackSearching ? (
           <TrackingLoadingScreen query={trackSearchQuery} />
@@ -522,6 +529,7 @@ function MainAppContent() {
         onNavigate={handleNavigate}
         showTrustStrip={currentPage !== 'track-result'}
       />
+      </Suspense>
     </div>
   );
 }

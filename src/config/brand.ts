@@ -61,6 +61,10 @@ export const PHONE = '';
 export const WHATSAPP = '';
 export const HQ_ADDRESS = '';
 
+// Smartsupp live-chat widget key (public; it is sent to every visitor's browser). Empty disables
+// the widget. Loaded by src/services/liveChat.ts on the public site only, never on the admin path.
+export const SMARTSUPP_KEY = 'c0ff982c34bbf1981dd0c25707889f0ccf9d33cb';
+
 export const SOCIAL = {
   facebook: '',
   x: '',
